@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Android.Hardware;
 using Android.Runtime;
 
@@ -65,7 +66,12 @@ namespace Xamarin.Essentials
         {
             if (e.Sensor.Name == accelerometer && !lastAccelerometerSet)
             {
-                e.Values.CopyTo(lastAccelerometer, 0);
+                var modifiedValues = new float[3];
+                e.Values.CopyTo(modifiedValues, 0);
+                modifiedValues[2] = Math.Abs(modifiedValues[2]);
+                modifiedValues.CopyTo(lastAccelerometer, 0);
+                Debug.WriteLine($"accelerometer: {e.Values[0]} {e.Values[1]} {e.Values[2]}\n");
+                Debug.WriteLine($"modified: {modifiedValues[0]} {modifiedValues[1]} {modifiedValues[2]}\n");
                 lastAccelerometerSet = true;
             }
             else if (e.Sensor.Name == magnetometer && !lastMagnetometerSet)

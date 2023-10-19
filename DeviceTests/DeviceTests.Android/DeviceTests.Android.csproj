@@ -74,6 +74,7 @@
     <ProjectReference Include="..\DeviceTests.Shared\DeviceTests.Shared.csproj">
       <Project>{D30EA5AD-6C9B-4517-9767-41C2E62946DB}</Project>
       <Name>DeviceTests.Shared</Name>
+      <IsAppExtension>false</IsAppExtension>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
